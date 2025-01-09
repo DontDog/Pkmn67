@@ -11,7 +11,7 @@ import org.hibernate.type.SqlTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import ru.mirea.GAliev.pkmn.models.AttackSkill;
 import ru.mirea.GAliev.pkmn.models.Card;
-import ru.mirea.GAliev.pkmn.utils.SkillDeserializer;
+import ru.mirea.GAliev.pkmn.models.SkillDeserializer;
 
 import java.util.List;
 import java.util.UUID;
