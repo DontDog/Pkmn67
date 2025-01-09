@@ -27,7 +27,7 @@ public class JwtService {
     private final JdbcUserDetailsManager jdbcUserDetailsManager;
     private final PasswordEncoder passwordEncoder;
 
-    public UserDetails verifyTokenAndGetUser(String token) {
+    public UserDetails verify(String token) {
         try {
             Claims claims;
             claims = Jwts.parserBuilder()

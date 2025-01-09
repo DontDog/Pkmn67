@@ -24,13 +24,29 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
-            String jwt = extractTokenFromHeaderOrCookie(request);
+            String jwt = null;
+
+            String authHeader = request.getHeader("Authorization");
+            if(authHeader != null && authHeader.startsWith("Bearer ")) {
+                jwt = authHeader.substring(7);
+            } else if(authHeader != null && authHeader.startsWith("Basic")) {
+                return ;
+            }
+
+            if(request.getCookies() != null) {
+                for(Cookie cookie : request.getCookies()) {
+                    if("JWT".equals(cookie.getName())) {
+                        jwt = new String(Base64.getDecoder().decode(cookie.getValue()));
+                    }
+                }
+            }
 
             if(jwt == null) {
                 filterChain.doFilter(request, response);
                 return;
             }
-            UserDetails user = jwtService.verifyTokenAndGetUser(jwt);
+
+            UserDetails user = jwtService.verify(jwt);
 
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user.getUsername(), null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(auth);
