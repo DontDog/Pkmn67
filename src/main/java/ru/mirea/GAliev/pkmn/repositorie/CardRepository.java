@@ -18,6 +18,6 @@ public interface CardRepository extends JpaRepository<CardEntity, UUID> {
     @Query("FROM CardEntity card WHERE card.pokemonOwner.firstName = :firstName AND " +
             "card.pokemonOwner.familyName = :familyName AND " +
             "card.pokemonOwner.surName = :surName")
-    Optional<CardEntity> findByOwnerFullName(String firstName,
-                                             String familyName, String surName);
+    Optional<CardEntity> findByOwnerFullName(String firstName, String surName,
+                                             String familyName);
 }
