@@ -85,7 +85,7 @@ public class CardEntity {
                 .attackSkills(card.getSkills())
                 .pokemonType(String.valueOf(card.getPokemonType()))
                 .regulationMark(card.getRegulationMark())
-                .cardNumber(card.getNumber())
+                .cardNumber(card.getCardNumber())
                 .build();
     }
 }

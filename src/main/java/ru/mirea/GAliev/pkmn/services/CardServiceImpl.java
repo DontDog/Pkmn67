@@ -4,10 +4,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
-import org.springframework.web.client.RestTemplate;
 import ru.mirea.GAliev.pkmn.daos.CardDAO;
 import ru.mirea.GAliev.pkmn.models.Card;
-import ru.mirea.GAliev.pkmn.models.Student;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,7 +46,7 @@ public class CardServiceImpl implements CardService {
     public String getImageUrl(String name) {
         Card card = getCardByName(name);
         RestClient restClient = RestClient.create();
-        JsonNode json = restClient.get().uri("https://api.pokemontcg.io/v2/cards?q=name:" + name + " number:" + card.getNumber()).retrieve().body(JsonNode.class);
+        JsonNode json = restClient.get().uri("https://api.pokemontcg.io/v2/cards?q=name:" + name + " number:" + card.getCardNumber()).retrieve().body(JsonNode.class);
 
         assert json != null;
         return String.valueOf(json.findValue("data").elements().next().findValue("images").findValue("large")).replace('"', ' ').trim();

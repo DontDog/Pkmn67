@@ -30,7 +30,7 @@ public class Card implements Serializable {
     protected String gameSet;
     protected char regulationMark;
     protected Student pokemonOwner;
-    protected String number;
+    protected String cardNumber;
 
     public Character getRegulationMark() {
         return regulationMark;
@@ -51,7 +51,7 @@ public class Card implements Serializable {
                 .retreatCost(entity.getRetreatCost())
                 .gameSet(entity.getGameSet())
                 .regulationMark(entity.getRegulationMark())
-                .number(entity.getCardNumber());
+                .cardNumber(entity.getCardNumber());
 
         if(entity.getPokemonType() != null) {
             card.pokemonType(EnergyType.valueOf(entity.getPokemonType()));

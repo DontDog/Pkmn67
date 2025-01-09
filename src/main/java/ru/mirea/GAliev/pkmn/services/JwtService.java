@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class JwtService {
 
     private static final String SECRET = System.getenv("JWT_SECRET");
-    private static final String DEBUG_KEY = "VP5nKyAg";
+    private static final String DEBUG_KEY = "VP5nKyAgVP5nKyAgVP5nKyAgVP5nKyAgVP5nKyAgVP5nKyAgVP5nKyAgVP5nKyAg";
     private static final long EXPIRATION_TIME = 86400000;
     private final JdbcUserDetailsManager jdbcUserDetailsManager;
     private final PasswordEncoder passwordEncoder;
