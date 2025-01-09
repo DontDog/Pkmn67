@@ -31,7 +31,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/api/v1/cards/{name}").permitAll()
                                 .requestMatchers("/api/v1/cards/owner").permitAll()
                                 .requestMatchers( HttpMethod.POST, "/api/v1/cards").hasRole("ADMIN")
-                                .requestMatchers( HttpMethod.POST, "/api/v1/students").hasRole("ADMIN")
+                                .requestMatchers( HttpMethod.POST, "/api/v1/users").hasRole("ADMIN")
                                 .requestMatchers("/login").permitAll()
                                 .requestMatchers("/reg").permitAll()
                                 .anyRequest().authenticated()
