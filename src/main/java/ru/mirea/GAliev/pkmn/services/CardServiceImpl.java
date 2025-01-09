@@ -40,29 +40,6 @@ public class CardServiceImpl implements CardService {
             card_ = getCardByName(card.getName());
         } catch(IllegalArgumentException e) {
 
-            Student student;
-            if((student = card.getPokemonOwner()) != null) {
-                try {
-                    student = studentService.getByFullName(student.getFirstName(),
-                            student.getSurName(), student.getFamilyName());
-                } catch (IllegalArgumentException e1) {
-                    student.setId(null);
-                }
-                card.setPokemonOwner(student);
-            }
-
-            Card evolves;
-            if((evolves = card.getEvolvesFrom()) != null) {
-                try {
-                    evolves = getCardByName(evolves.getName());
-                } catch(IllegalArgumentException e1) {
-                    evolves.setId(null);
-                }
-                card.setEvolvesFrom(evolves);
-            } else {
-                card.setEvolvesFrom(null);
-            }
-
             card_ = cardDAO.createCard(card);
         }
         return card_;
@@ -75,10 +52,5 @@ public class CardServiceImpl implements CardService {
 
         assert json != null;
         return String.valueOf(json.findValue("data").elements().next().findValue("images").findValue("large")).replace('"', ' ').trim();
-    }
-
-    public byte[] getImageBytes(String url) {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(url, byte[].class);
     }
 }
